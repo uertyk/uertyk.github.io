@@ -1,0 +1,199 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: var(--default-font-family,ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji");
+}
+
+html{
+    scrollbar-color: #ebf0ff #171810;
+    scrollbar-width: thin;
+}
+
+a{
+    text-decoration: none;
+    color: #ebf0ff;
+}
+
+ul{
+    list-style: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: linear-gradient(to right, #17181a, #17181a);
+}
+
+nav{
+    font-size: 18px;
+    text-align: left;
+    color: #ebf0ff;
+    flex:2.3;
+}
+nav>ul>a{
+    padding: 2%;
+}
+
+header>img{
+    width: 13%;
+}
+
+header>p{
+    flex:1;
+    font-size: 20px;
+    text-align: left;
+    color: #ebf0ff;
+}
+
+body{
+    background-color: #0F0F11;
+}
+
+main{
+    padding: 20px 10%;
+}
+
+footer{
+    flex:1;
+    font-size: 15px;
+    text-align: left;
+    color: #ebf0ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer{
+    flex:1;
+    font-size: 15px;
+    text-align: left;
+    color: #ebf0ff;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xlserversthebest{
+    display: flex;
+    margin: 3%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.video{
+    display: flex;
+    justify-content: space-around;
+    align-items: right;
+    object-fit: cover;
+}
+
+.video2{
+    box-shadow: inset 0px 0px 80px 35px rgba(0, 0, 0, 1);
+    flex:1;
+}
+
+.textxlbest{
+    flex:0.5;
+    font-size: 30px;
+    text-align: left;
+    color: #ebf0ff;
+}
+
+.advenced{
+    color: #ebf0ff;
+    padding: 10% 0%;
+}
+
+.advenced h2{
+   margin: 10px 0 30px;
+}
+
+
+.advenced>h3{
+    display: flex;
+}
+
+.advenced2{
+    color: #ebf0ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    object-fit: cover;
+}
+
+.advenced2 > *{
+    width: 30%;
+    text-align: center;
+
+}
+
+.advenced2 > div{
+   
+    border: 2px solid #636262;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #121315;
+}
+
+.advenced2 ul{
+     margin: auto;
+    width: 75%;
+}
+.advenced2  li{
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: #1e2024;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+hr{
+    color: #c7c7c7;
+    height: 0.5px;
+    margin: auto;
+}
+
+.wow .li1{
+    background-image: url("images/Vector.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
+
+.wow .li2{
+    background-image: url("images/Vector (1).png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
+
+.wow .li3{
+    background-image: url("images/Vector (2).png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
+
+.shkolota .li1{
+    background-image: url("images/Vector (3).png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
+
+.shkolota .li2{
+    background-image: url("images/Vector (4).png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
+
+.shkolota .li3{
+    background-image: url("images/Vector (5).png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: 20px;
+}
