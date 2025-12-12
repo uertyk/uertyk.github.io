@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubeTube</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <style>
+        :root {
+            --primary-bg: #101116;
+            --secondary-bg: #0d0d11;
+            --accent-color: #6d6fff;
+            --text-color: #c9d1d9;
+            --search-bg: #111418;
+            --border-color: #30363d;
+            --tag-bg: #191d20;
+            --tag-hover-bg: #151618;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--secondary-bg);
+            padding: 15px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .search-container {
+            position: relative;
+            width: 400px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 45px 10px 15px;
+            border-radius: 20px;
+            background-color: var(--search-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .avatar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 1%;
+            object-fit: cover;
+        }
+
+        .tags {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 0 80px;
+        }
+
+        .tag {
+            background-color: var(--tag-bg);
+            padding: 6px 14px;
+            border-radius: 18px;
+            font-size: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .content-section {
+            padding: 20px 80px;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .video-card {
+            background-color: var(--secondary-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 150px;
+            position: relative;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-duration {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            padding: 4px 8px;
+            background: rgba(0,0,0,0.6);
+            font-size: 12px;
+            border-radius: 6px;
+        }
+
+        .video-info { padding: 15px; }
+        .video-title { font-weight: 700; font-size: 18px; color:#fff; }
+        .video-details { opacity: 0.7; font-size:14px; }
+
+        .burger-menu{
+            display: none;
+        }
+
+        .main-menu{
+            display: none;
+        }
+
+        @media (min-width: 0px) and (max-width: 700px){
+            .burger-menu{
+                display: block;
+                width: 30px;
+                height: 30px;
+                background-image: url(images/menu.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: calc(100% - 150px);
+                z-index: 999;
+            }
+
+            .avatar{
+                display: none;
+            }
+
+            .search-container{
+                display: none;
+            }
+
+            .main-menu{
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100vh;
+                top: 0;
+                left: 0;
+                background-color: black;
+                padding: 20px;
+                transform: translate(1000px);
+                transition: 2s;
+            }
+            .main-menu > ul{
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .main-menu > ul > li{
+                margin-top: 20px;
+                font-size: 30px;
+            }
+
+            .burger-menu.active{
+                background-image: url(images/no.png);
+            }
+
+            .main-menu.active{
+                transform: translate(0);
+            }
+
+
+        }
+        .slick-slider{
+            display: flex !important;
+            align-items: center;
+
+        }
+
+        .carusel_item img{
+        width: auto;
+        height: 300px;
+        }
+
+        .carusel_item{
+            display: flex !important;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        .active-tag {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">CubeTube</div>
+
+        <div class="search-container">
+            <input class="search-input" type="text" placeholder="Поиск...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="burger-menu"></div>
+
+        <div class="avatar">
+            <img src="https://vzge.me/face/1000/urqiui">
+        </div>
+
+        <nav class="main-menu">
+            <ul>
+                <li><a href="">ААА</a></li>
+                <li><a href="">ААА</a></li>
+                <li><a href="">ААА</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <div class="tags">
+        <div class="tag" data-filter="all">Тренды</div>
+        <div class="tag" data-filter="minecraft">Minecraft</div>
+        <div class="tag" data-filter="lifestyle">Лайфстайл</div>
+    </div>
+
+
+
+    <div class="content-section">
+        <div class="videos-grid">
+
+            <div class="video-card" data-category="trends">
+                <div class="video-thumbnail">
+                    <img src="/Frame 1 (17).png">
+                    <span class="video-duration">02:26</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Анонс Ивента - #XL</div>
+                    <div class="video-details video-author">@xluniverse / XL Universe</div>
+                    <div class="video-details video-stats">53 просмотров • 1 день назад</div>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="minecraft">
+                <div class="video-thumbnail">
+                    <img src="/Frame 1 (16).png">
+                    <span class="video-duration">01:25:28</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Создание скина для Кисельки</div>
+                    <div class="video-details video-author">@uertyk_ / uertyk_</div>
+                    <div class="video-details video-stats">2К просмотров • 6 дней назад</div>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="lifestyle">
+                <div class="video-thumbnail">
+                    <img src="/Frame 1 (15).png">
+                    <span class="video-duration">56:03</span>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Первые шаги — Юрли!</div>
+                    <div class="video-details video-author">@urliui / Юрли!</div>
+                    <div class="video-details video-stats">16 просмотров • 1 день назад</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="carusel">
+                    <div class="carusel_item">
+                        <img src="./Frame 1 (13).png" alt="">
+                        <p></p>
+                    </div>
+                    <div class="carusel_item">
+                        <img src="./Frame 1 (14).png" alt="">
+                        <p></p>
+                    </div>
+                    <div class="carusel_item">
+                        <img src="./Frame 1 (15).png" alt="">
+                        <p></p>
+                    </div>
+                    <div class="carusel_item">
+                        <img src="./Frame 1 (16).png" alt="">
+                        <p></p>
+                    </div>
+                    <div class="carusel_item">
+                        <img src="./Frame 1 (17).png" alt="">
+                        <p></p>
+                    </div>
+                </div>
+    
+<main><button class="btn">click</button></main>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
